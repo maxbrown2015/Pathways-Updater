@@ -1,0 +1,66 @@
+
+.Course {
+  display: flex;
+  align-items: center;
+  width: 95vw;
+  height: 3em;
+  margin-left: 3vw;
+  border: black solid 3px;
+  font-size: 1em;
+}
+
+.Number-title-wrapper {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+}
+
+.Course-number {
+  margin: 1%;
+  float: left;
+}
+
+.Course-title {
+  margin: 1%;
+  float: left;
+}
+
+.Pathways-wrapper {
+  width: 65%;
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+}
+
+.Pathways-title {
+  float: left;
+  margin-right: 1em;
+}
+
+.Pathways-item {
+  float: left;
+  margin: 1em;
+}
+
+.Button-wrapper {
+  width: 5%;
+  display: flex;
+  align-items: center;
+  font-size: 2em;
+}
+
+.Edit-button {
+  margin: 1%;
+  float: right;
+}
+
+.Delete-button {
+  margin: 5px;
+  color: red;
+  float: right;
+}
+
+
+
