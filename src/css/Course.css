@@ -48,19 +48,28 @@
   width: 5%;
   display: flex;
   align-items: center;
-  font-size: 2em;
+  font-size: 1.9em;
 }
 
 .Edit-button {
-  margin: 1%;
+  margin: 5px;
+  color: black;
   float: right;
+  cursor: pointer;
+}
+
+.Edit-button:hover {
+  color: white;
 }
 
 .Delete-button {
   margin: 5px;
-  color: red;
+  color: rgb(241, 53, 53);
   float: right;
+  cursor: pointer;
 }
 
-
+.Delete-button:hover {
+  color: white;
+}
 

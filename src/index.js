@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/index.css';
-import Course from './js/Course';
 import Catalog from './js/Catalog';
+import Popup from 'react-popup';
 
 
 const data = {
@@ -20,5 +20,5 @@ const data = {
   }
 }
 
-ReactDOM.render(<Catalog data={data}/>, document.getElementById('root'));
+ReactDOM.render(<div><div><Catalog data={data}/></div><div><Popup /></div></div>, document.getElementById('root'));
 

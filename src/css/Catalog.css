@@ -1,3 +1,42 @@
 .Catalog {
   margin-top: 5vh;
+  width: 100vw;
+}
+
+.Title {
+  font-size: 4em;
+  font-family: sans-serif;
+  color:rgb(56, 54, 54);
+  display: flex;
+  justify-content: left;
+  margin: .25em;
+}
+
+.Button-Wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.Submit-Icon {
+  font-size: 5em;
+  color: rgb(10, 206, 10);
+  margin: .25em;
+  cursor: pointer;
+}
+
+.Submit-Icon:hover {
+  color: white;
+}
+
+.Revert-Icon {
+  font-size: 5em;
+  color: rgb(247, 17, 17);
+  margin: .25em;
+  cursor: pointer;
+}
+
+.Revert-Icon:hover {
+  color: white
 }

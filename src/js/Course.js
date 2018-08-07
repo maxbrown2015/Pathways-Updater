@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import '../css/Course.css';
+import Popup from 'react-popup';
+import createDeletePopup from './DeletePopup.js'
 
 class Course extends React.Component {
   constructor(props) {
@@ -14,20 +16,30 @@ class Course extends React.Component {
       title: props.data.title.toUpperCase(),
       description: props.data.description,
       pathways: props.data.pathways,
-      notifyParent: props.callback
+      notifyParentOnChange: props.change,
+      notifyParentOnDelete: props.delete
     };
-
   }
 
-  handleNameChange(name) {
-    this.setState({title: name}, () => {
-      this.state.notifyParent(this.state)
+  handleChange(changedCourse) {
+    this.setState({id: changedCourse.id, title: changedCourse.title, description: changedCourse.description, 
+      pathways: changedCourse.pathways}, () => {
+      this.state.notifyParentOnChange(this.state);
     });
+  }
+
+  handleDeleteButton() {
+    //launch ARE YOU SURE? POPUp
+    console.log('del');
+    this.state.notifyParentOnDelete(this.state.id);
+    //this.state = false;
+    //Popup.create(createDeletePopup(this.state.id))
   }
 
   render() {
     //console.log(this.state);
     let pathways = getPathwayMarkup(this.state.pathways);
+
     return (
     <div className="Course">
       <div className="Number-title-wrapper">
@@ -35,12 +47,12 @@ class Course extends React.Component {
         <div className="Course-title">{this.state.title}</div>
       </div>
       <div className="Pathways-wrapper">
-        <div className="Pathways-title">Pathways:      </div>
+        <div className="Pathways-title">Current Pathways:</div>
         <div>{pathways}</div>
       </div>
       <div className="Button-wrapper">
-        <div className="Edit-button"  onClick={(e) => this.handleNameChange('hello')}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
-        <div className="Delete-button"><i class="fa fa-times" aria-hidden="true"></i></div>
+        <div className="Edit-button"  onClick={(e) => this.handleChange(null)}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
+        <div className="Delete-button" onClick={(e) => this.handleDeleteButton(this)}><i class="fa fa-times" aria-hidden="true"></i></div>
       </div>
     </div>
     );
