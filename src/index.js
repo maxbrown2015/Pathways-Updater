@@ -17,8 +17,31 @@ const data = {
     title: "Euro Hist",
     description: "Lorem Ipsum",
     pathways: ['human_rights', 'religious_comm', 'econ_history']
+  },
+  3: {
+    id: '019',
+    title: "Spanish Hist",
+    description: "Lorem Ipsum",
+    pathways: ['econ_history', 'slavery_race', 'religous_comm']
   }
 }
 
-ReactDOM.render(<div><div><Catalog data={data}/></div><div><Popup /></div></div>, document.getElementById('root'));
+const pathwaysObj = {
+  econ_history: {
+    title: "Economic History",
+    color: "#434343",
+    key: 'econ_history'
+  },
+  human_rights: {
+    title: "Human Rights",
+    color: "#111111",
+    human_rights: 'human_rights'
+  },
+  religious_comm: {
+    title: "Religious Community",
+    color: "#555545",
+    key: 'religous_comm'
+  }
+}
 
+ReactDOM.render(<div><Catalog data={data} pathwaysObj={pathwaysObj}/></div>,document.getElementById('root'));

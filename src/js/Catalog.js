@@ -6,7 +6,7 @@ import Course from './Course';
 class Catalog extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {cachedCourses: [], courses: []}
+    this.state = {cachedCourses: [], courses: [], coursesMarkup: []}
     this.registerCourseStateChange = this.registerCourseStateChange.bind(this);
     this.deleteCourse = this.deleteCourse.bind(this); 
 
@@ -15,28 +15,25 @@ class Catalog extends React.Component {
       this.state.cachedCourses.push(props.data[index]);
     });
 
-    /*
+    
     Object.keys(props.data).forEach(index => {
-      this.state.coursesMarkup[index] =(<Course data={props.data[index]} change= {this.registerCourseStateChange}
-      delete={this.deleteCourse}/>);
-      
+        this.state.coursesMarkup.push({
+          markup: (<Course data={props.data[index]} change= {this.registerCourseStateChange} delete={this.deleteCourse} active={true}/>),
+        });
     });
-    */
+    
   };
 
   deleteCourse(id) {
-    let newCourseList = []
-    console.log(id);
-    this.state.courses.forEach((item) => {
-      if (item.id !== id) {
-        newCourseList.push(item);
-      }
-    });
     //console.log(newCourseList)
-    this.setState({courses: newCourseList}, () => {
-      console.log(this.state.courses);
+    let newCourseList = []
+    console.log(id)
+    this.setState(function(prevState) {
+      return {
+        courses: prevState.courses.filter((course) => course.id !== id)
+      };
     });
-  }
+  };
 
   registerCourseStateChange(newCourse) {
     let newCourseList = [];
@@ -71,16 +68,18 @@ class Catalog extends React.Component {
 
 
   render() {
+    /*
     let coursesMarkup = [];
     this.state.courses.forEach((item) => {
-      console.log(item);
-      coursesMarkup.push(<Course data={item} change= {this.registerCourseStateChange}
-      delete={this.deleteCourse}/>);
+      //console.log(item);
+      coursesMarkup.push(<Course data={item} pathwaysObj={this.props.pathwaysObj} change={this.registerCourseStateChange}
+      delete={this.deleteCourse.bind(item.id)} />);
     });
+    */
 
     return (<div className="Catalog">
       <div className="Title">Course Catalog</div>
-      <div className="CourseList">{coursesMarkup}</div>
+      <div className="CourseList">{this.state.coursesMarkup}</div>
       <div className="Button-Wrapper">
         <div className="Submit-Icon"><i class="fa fa-check-circle" onClick={this.promptExportCourses}></i></div>
         <div className="Revert-Icon"><i class="fa fa-times" aria-hidden="true" onClick={this.promptDeclineChanges}></i></div>
