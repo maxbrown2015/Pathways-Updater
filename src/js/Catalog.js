@@ -36,7 +36,6 @@ class Catalog extends React.Component {
     this.setState({courses: newCourseList}, () => {
       console.log(this.state.courses);
     });
-    
   }
 
   registerCourseStateChange(newCourse) {
@@ -55,6 +54,7 @@ class Catalog extends React.Component {
         newCourseList.push(courseToAdd);
       }
     });
+    
     this.setState({courses: newCourseList}, () => {
       console.log('anything?')
     });
@@ -62,8 +62,7 @@ class Catalog extends React.Component {
   }
 
   promptExportCourses() {
-    //export em -> 
-    console.log("EXPORTING!")
+    console.log(this.state.courses);
   }
 
   promptDeclineChanges() {
