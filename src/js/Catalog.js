@@ -10,16 +10,19 @@ class Catalog extends React.Component {
     this.registerCourseStateChange = this.registerCourseStateChange.bind(this);
     this.deleteCourse = this.deleteCourse.bind(this); 
 
+    this.promptDeclineChanges = this.promptDeclineChanges.bind(this);
+    this.promptExportCourses = this.promptExportCourses.bind(this);
+
     Object.keys(props.data).forEach((index) => {
       this.state.courses.push(props.data[index]);
       this.state.cachedCourses.push(props.data[index]);
     });
 
-    
+  
     Object.keys(props.data).forEach(index => {
-        this.state.coursesMarkup.push({
-          markup: (<Course data={props.data[index]} change= {this.registerCourseStateChange} delete={this.deleteCourse} active={true}/>),
-        });
+        this.state.coursesMarkup.push(
+          (<Course data={props.data[index]} change= {this.registerCourseStateChange} delete={this.deleteCourse} active={true}/>),
+        );
     });
     
   };
@@ -57,25 +60,7 @@ class Catalog extends React.Component {
     });
   
   }
-
-  promptExportCourses() {
-    console.log(this.state.courses);
-  }
-
-  promptDeclineChanges() {
-    console.log("DECLINE");
-  }
-
-
   render() {
-    /*
-    let coursesMarkup = [];
-    this.state.courses.forEach((item) => {
-      //console.log(item);
-      coursesMarkup.push(<Course data={item} pathwaysObj={this.props.pathwaysObj} change={this.registerCourseStateChange}
-      delete={this.deleteCourse.bind(item.id)} />);
-    });
-    */
 
     return (<div className="Catalog">
       <div className="Title">Course Catalog</div>
@@ -86,6 +71,16 @@ class Catalog extends React.Component {
       </div>
     </div>);
   }
+
+  promptExportCourses() {
+    console.log(this.state.courses);
+  }
+
+  promptDeclineChanges() {
+    console.log("DECLINE");
+  }
 }
+
+
 
 export default Catalog

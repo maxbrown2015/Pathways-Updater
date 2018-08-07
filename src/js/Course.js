@@ -18,14 +18,16 @@ class Course extends React.Component {
       selectedPathways: props.data.pathways,
       notifyParentOnChange: props.change,
       notifyParentOnDelete: props.delete,
+      active: true,
       activeEdit: true,
     };
   }
 
   handleDeleteButton(e) {
+    this.setState({active: false});
     //launch ARE YOU SURE? POPUp
     console.log('del');
-    //this.props.delete(this.state.id);
+    this.props.delete(this.state.id);
     //this.props.render = false;
     //this.state.notifyParentOnDelete();
   }
@@ -46,43 +48,48 @@ class Course extends React.Component {
     //console.log(this.state);
     let pathways = getPathwayMarkup(this.state.selectedPathways);
     //console.log(this.state.activeEdit);
-    if (this.state.activeEdit) {
-      return (
-      <div className="Course">
-        <div className="Number-title-wrapper">
-          <div className="Course-number">HIST {this.state.id}</div>
-          <div className="Course-title">{this.state.title}</div>
+    if (this.state.active) {
+      if (this.state.activeEdit) {
+        return (
+        <div className="Course">
+          <div className="Number-title-wrapper">
+            <div className="Course-number">HIST {this.state.id}</div>
+            <div className="Course-title">{this.state.title}</div>
+          </div>
+          <div className="Pathways-wrapper">
+            <div className="Pathways-title">Current Pathways:</div>
+            <div>{pathways}</div>
+          </div>
+          <div className="Button-wrapper">
+            <div className="Edit-button"  onClick={this.handleChange}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
+            <div className="Delete-button" onClick={this.handleDeleteButton}><i class="fa fa-times" aria-hidden="true"></i></div>
+          </div>
         </div>
-        <div className="Pathways-wrapper">
-          <div className="Pathways-title">Current Pathways:</div>
-          <div>{pathways}</div>
-        </div>
-        <div className="Button-wrapper">
-          <div className="Edit-button"  onClick={this.handleChange}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
-          <div className="Delete-button" onClick={this.handleDeleteButton}><i class="fa fa-times" aria-hidden="true"></i></div>
-        </div>
-      </div>
-      );
+        );
+      }
+      else {
+        return (
+          <div className="Editing-course">
+            <div className="Title-And-Buttons-Wrapper">
+              <div className="Edit-number">HIST {this.state.id}</div>
+              <div className="Button-wrapper">
+                <div className="Edit-button"  onClick={this.handleChange}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
+                <div className="Confirm-button"><i class="fa fa-check-circle"></i></div>
+              </div>
+            </div>
+            <div className="Editing-container">
+              <div className="Editing-text-container">
+                <div className="Edit-title">TITLE:</div>
+                <div className="Edit-descirption">DESCRIPTION:</div>
+              </div>
+              <div>< PathwaysSelector allPathways={this.props.pathwaysObj} selectedPathways={this.props.data.pathways}/></div>
+            </div>
+          </div>
+        );
+      }
     }
     else {
-      return (
-        <div className="Editing-course">
-          <div className="Title-And-Buttons-Wrapper">
-            <div className="Edit-number">HIST {this.state.id}</div>
-            <div className="Button-wrapper">
-              <div className="Edit-button"  onClick={this.handleChange}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
-              <div className="Confirm-button"><i class="fa fa-check-circle"></i></div>
-            </div>
-          </div>
-          <div className="Editing-container">
-            <div className="Editing-text-container">
-              <div className="Edit-title">TITLE:</div>
-              <div className="Edit-descirption">DESCRIPTION:</div>
-            </div>
-            <div>< PathwaysSelector allPathways={this.props.pathwaysObj} selectedPathways={this.props.data.pathways}/></div>
-          </div>
-        </div>
-      );
+      return <div></div>
     }
   };
 }
