@@ -10,8 +10,9 @@ class Catalog extends React.Component {
     super(props);
     this.state = {courses: {}, cachedCourses: {}, renderCourseAddition: false}
     //this.registerCourseStateChange = this.registerCourseStateChange.bind(this);
-    this.deleteCourse = this.deleteCourse.bind(this); 
-    this.addNewCourse = this.addNewCourse.bind(this);
+    this.handleDelete = this.handleDelete.bind(this); 
+    this.handleAdd = this.handleAdd.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
 
     this.promptDeclineChanges = this.promptDeclineChanges.bind(this);
     this.promptExportCourses = this.promptExportCourses.bind(this);
@@ -31,26 +32,7 @@ class Catalog extends React.Component {
     });
   }
 
-  addNewCourse(course) {
-    console.log(course);
-
-    const courseToAdd = {
-      id: course.id,
-      title: course.title,
-      description: course.description,
-      pathways: ['human_rights', 'religious_comm', 'econ_history']
-    }
-    this.setState(function(prevState) {
-      let newCourseList = prevState.courses;
-      newCourseList[course.id] = courseToAdd;
-      //newCourseList[course.id] = courseTO
-      return {
-        courses: newCourseList
-      };
-    });
-  }
-
-  deleteCourse(id) {
+  handleDelete(id) {
     //console.log(newCourseList)
     console.log(id)
     this.setState(function(prevState) {
@@ -61,6 +43,28 @@ class Catalog extends React.Component {
       };
     });
   };
+
+  handleEdit(modifiedCourse) {
+
+  }
+
+  handleAdd(newCourse) {
+    const courseToAdd = {
+      id: newCourse.id,
+      title: newCourse.title,
+      description: newCourse.description,
+      pathways: ['human_rights', 'religious_comm', 'econ_history']
+    }
+    this.setState(function(prevState) {
+      let newCourseList = prevState.courses;
+      newCourseList[newCourse.id] = courseToAdd;
+      //newCourseList[course.id] = courseTO
+      return {
+        courses: newCourseList
+      };
+    });
+  }
+
 
   getCourseCatalogMarkup() {
     
@@ -80,7 +84,7 @@ class Catalog extends React.Component {
     console.log(this.state.courses);
     const markup = Object.keys(this.state.courses).map((key)  => (
       (<Course key={key} data={this.state.courses[key]} pathwaysObj={this.props.pathwaysObj}
-        change={this.registerCourseStateChange} delete={this.deleteCourse} active={true}/>)
+        change={this.registerCourseStateChange} delete={this.handleDelete} active={true}/>)
     ));
     return markup;
   }
@@ -92,7 +96,7 @@ class Catalog extends React.Component {
           <div className="Add-Popup-Header"></div>
           <div className="Entry-Container">
             <div className="Text-Entry-Container">
-              <NewCourseForm sendCourseToParent={this.addNewCourse}/>
+              <NewCourseForm sendCourseToParent={this.handleAdd}/>
             </div>
             <div className="Pathway-Selector-Container"  onClick={this.togglePopup}></div>
           </div>

@@ -6,8 +6,8 @@ class Course extends React.Component {
   constructor(props) {
     super(props);
    // this.handleEditButton = this.handleEditButton.bind(this);
-    this.handleDeleteButton = this.handleDeleteButton.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+     = .bind(this);
+    this.toggleEditMode = this.toggleEditMode.bind(this);
     //this.handleNameChange = this.handleNameChange.bind(this);
     console.log(props.data.id);
     //to_do set pathway state
@@ -20,18 +20,18 @@ class Course extends React.Component {
     };
   }
 
-  handleDeleteButton(e) {
+  handleDelete(e) {
     //this.setState({active: false});
     //launch ARE YOU SURE? POPUp
     console.log('del'); 
     this.props.delete(this.props.data.id);
   }
 
-  componentWillUnmount() {
-    //console.log(this.props.data.id);
-  }
 
-  handleChange() {
+
+
+
+  toggleEditMode() {
     this.setState((prevState) => ({
       activeEdit: !prevState.activeEdit
     }));
@@ -55,8 +55,8 @@ class Course extends React.Component {
             <div>{pathways}</div>
           </div>
           <div className="Button-wrapper">
-            <div className="Edit-button"  onClick={this.handleChange}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
-            <div className="Delete-button" onClick={this.handleDeleteButton}><i class="fa fa-times" aria-hidden="true"></i></div>
+            <div className="Edit-button"  onClick={this.toggleEditMode}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
+            <div className="Delete-button" onClick={}><i class="fa fa-times" aria-hidden="true"></i></div>
           </div>
         </div>
         );
@@ -67,7 +67,7 @@ class Course extends React.Component {
             <div className="Title-And-Buttons-Wrapper">
               <div className="Edit-number">HIST {this.state.id}</div>
               <div className="Button-wrapper">
-                <div className="Edit-button"  onClick={this.handleChange}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
+                <div className="Edit-button"  onClick={this.toggleEditMode}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
                 <div className="Confirm-button"><i class="fa fa-check-circle"></i></div>
               </div>
             </div>
@@ -98,7 +98,7 @@ export default Course;
 
 
   /*
-  handleChange(changedCourse) {
+  toggleEditMode(changedCourse) {
     this.setState({id: changedCourse.id, title: changedCourse.title, description: changedCourse.description, 
       pathways: changedCourse.pathways}, () => {
       this.state.notifyParentOnChange(this.state);
