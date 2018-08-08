@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/index.css';
-import Catalog from './js/Catalog';
-import Popup from 'react-popup';
-
+import CourseCatalog from './js/CourseCatalog';
 
 const data = {
   '101': {
     id: '101',
     title: "American Hist",
     description: "Lorem Ipsum",
-    pathways: ['politics_rev', 'slavery_race', 'border_immigration']
+    pathways: ['politics_rev', 'slavery_race', 'borders_immigration']
   },
   '015': {
     id: '015',
@@ -22,26 +20,53 @@ const data = {
     id: '012',
     title: "Spanish Hist",
     description: "Lorem Ipsum",
-    pathways: ['econ_history', 'slavery_race', 'religous_comm']
+    pathways: ['econ_history', 'slavery_race', 'religious_comm']
   }
 }
 
 const pathwaysObj = {
   econ_history: {
     title: "Economic History",
+    description: "Lorem Ipsum",
     color: "#434343",
+    highlight: "#Fdfdfd",
     key: 'econ_history'
   },
   human_rights: {
     title: "Human Rights",
-    color: "#111111",
-    human_rights: 'human_rights'
+    description: "Lorem Ipsum",
+    color: "#dsddss",
+    highlight: '#rerfdf',
+    key: 'human_rights'
   },
   religious_comm: {
     title: "Religious Community",
+    description: 'Lorem Ipsum',
     color: "#555545",
-    key: 'religous_comm'
+    highlight: '#rerfdf',
+    key: 'religious_comm'
+  },
+  borders_immigration: {
+    title: "Borders And Immigration",
+    description: 'Lorem Ipsum',
+    color: "#555545",
+    highlight: '#rerfdf',
+    key: 'borders_immigration'
+  },
+  slavery_race: {
+    title: 'Slavery and Race',
+    description: 'Lorem Ipsum',
+    color: "#555545",
+    highlight: '#rerfdf',
+    key: 'slavery_race'
+  },
+  politics_rev: {
+    title: "Politics And Revolution",
+    description: 'Lorem Ipsum',
+    color: "#555545",
+    highlight: '#rerfdf',
+    key: 'politics_rev'
   }
 }
 
-ReactDOM.render(<div><Catalog data={data} pathwaysObj={pathwaysObj}/></div>,document.getElementById('root'));
+ReactDOM.render(<div><CourseCatalog data={data} pathwaysObj={pathwaysObj}/></div>,document.getElementById('root'));

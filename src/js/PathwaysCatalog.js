@@ -39,9 +39,17 @@ class PathwaysCatalog extends React.Component {
       }
     });
   }
+
+  renderPathwayComponents() {
+    const pathwayComponents = Object.keys(this.props.pathways).map((key) => {
+      <PathwayComponent key={key} pathway={this.props.pathways[key]} 
+      sendEditToParent={this.handleEdit} sendDeleteToParent={this.handleDelete} />
+    })
+    return pathwayComponents;
+  }
   
   render() {
-    return (<div></div>);
+    return (<div>{this.renderPathwayComponents}</div>);
   }
 }
 

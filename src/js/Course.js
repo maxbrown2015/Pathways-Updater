@@ -10,6 +10,7 @@ class Course extends React.Component {
     this.handleDelete = this.handleDelete.bind(this);
     this.toggleEditMode = this.toggleEditMode.bind(this);
     this.validateInputs = this.validateInputs.bind(this);
+    this.renderPathwayNameMarkup = this.renderPathwayNameMarkup.bind(this);
     //this.handleNameChange = this.handleNameChange.bind(this);
     console.log(props.data.id);
     //to_do set pathway state
@@ -28,7 +29,7 @@ class Course extends React.Component {
   }
 
   handleEdit() {
-    const result = validateInputs();
+    const result = this.validateInputs();
     if (result === '') {
       //create a new version of the course to be updated in parent catalog
       const modifiedCourse = {
@@ -54,9 +55,18 @@ class Course extends React.Component {
     return message;
   }
 
+  renderPathwayNameMarkup() {
+    const markup = Object.keys(this.props.data.pathways).map((index) => {
+      const key = this.props.data.pathways[index];
+      console.log(this.props.pathwaysObj[key]);
+      return <div key={key} className="Pathways-item">{this.props.pathwaysObj[key].title}</div>
+    });
+    console.log(markup);
+    return markup
+  }
+
   render() {
     //console.log(this.state);
-    let pathways = getPathwayMarkup(this.props.data.pathways);
     //console.log(this.state.activeEdit);
       if (this.state.activeEdit) {
         return (
@@ -67,7 +77,7 @@ class Course extends React.Component {
           </div>
           <div className="Pathways-wrapper">
             <div className="Pathways-title">Current Pathways:</div>
-            <div>{pathways}</div>
+            <div>{this.renderPathwayNameMarkup()}</div>
           </div>
           <div className="Button-wrapper">
             <div className="Edit-button"  onClick={this.toggleEditMode}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
@@ -99,24 +109,6 @@ class Course extends React.Component {
   };
 }
 
-function getPathwayMarkup(selectedPathways) {
-  let pathways = []
-  Object.keys(selectedPathways).forEach(index => {
-    pathways.push(<div className="Pathways-item">{selectedPathways[index]}</div>);
-  });
-  return pathways;
-}
 
-  //
 
 export default Course;
-
-
-  /*
-  toggleEditMode(changedCourse) {
-    this.setState({id: changedCourse.id, title: changedCourse.title, description: changedCourse.description, 
-      pathways: changedCourse.pathways}, () => {
-      this.state.notifyParentOnChange(this.state);
-    });
-  }
-  */

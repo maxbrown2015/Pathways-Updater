@@ -4,28 +4,28 @@ import Course from './Course';
 import NewCourseForm from './NewCourseForm';
 
 
-class Catalog extends React.Component {
+class CourseCatalog extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {courses: {}, cachedCourses: {}, renderCourseAddition: false}
+    this.state = { courses: {}, cachedCourses: {}, renderCourseAddition: false }
     //this.registerCourseStateChange = this.registerCourseStateChange.bind(this);
-    this.handleDelete = this.handleDelete.bind(this); 
+    this.handleDelete = this.handleDelete.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
 
     this.promptDeclineChanges = this.promptDeclineChanges.bind(this);
     this.promptExportCourses = this.promptExportCourses.bind(this);
-    this.togglePopup = this.togglePopup.bind(this);  
+    this.togglePopup = this.togglePopup.bind(this);
 
     console.log("Constructor Called");
     this.state.courses = props.data;
     this.state.cachedCourses = JSON.parse(JSON.stringify(props.data));
-    console.log(this.state.courses === this.state.cachedCourses); 
+    console.log(this.state.courses === this.state.cachedCourses);
   };
 
   togglePopup() {
-    this.setState(function(prevState) {
+    this.setState(function (prevState) {
       return {
         renderCourseAddition: !prevState.renderCourseAddition
       };
@@ -35,7 +35,7 @@ class Catalog extends React.Component {
   handleDelete(id) {
     //console.log(newCourseList)
     console.log(id)
-    this.setState(function(prevState) {
+    this.setState(function (prevState) {
       let newCourses = prevState.courses;
       delete newCourses[id];
       return {
@@ -45,7 +45,7 @@ class Catalog extends React.Component {
   };
 
   handleEdit(modifiedCourse) {
-    this.setState(function(prevState) {
+    this.setState(function (prevState) {
       let newCourses = prevState.courses;
       newCourses[modifiedCourse.id] = modifiedCourse;
       return {
@@ -61,7 +61,7 @@ class Catalog extends React.Component {
       description: newCourse.description,
       pathways: ['human_rights', 'religious_comm', 'econ_history']
     }
-    this.setState(function(prevState) {
+    this.setState(function (prevState) {
       let newCourseList = prevState.courses;
       newCourseList[newCourse.id] = courseToAdd;
       //newCourseList[course.id] = courseTO
@@ -73,24 +73,22 @@ class Catalog extends React.Component {
 
 
   getCourseCatalogMarkup() {
-    
     const markup = this.getCourseMarkup()
     return (<div className="Catalog">
-    <div className="Title">Course Catalog</div>
-    <div className="CourseList">{markup}</div>
-    <div className="Button-Wrapper">
-      <div className="Submit-Icon"><i class="fa fa-check-circle" onClick={this.promptExportCourses}></i></div>
-      <div className="Revert-Icon"><i class="fa fa-times" aria-hidden="true" onClick={this.promptDeclineChanges}></i></div>
-      <div className="Add-Icon"><i class="fa fa-plus" onClick={this.togglePopup}></i></div>
-    </div>
-  </div>);
+      <div className="Title">Course Catalog</div>
+      <div className="CourseList">{markup}</div>
+      <div className="Button-Wrapper">
+        <div className="Submit-Icon"><i class="fa fa-check-circle" onClick={this.promptExportCourses}></i></div>
+        <div className="Revert-Icon"><i class="fa fa-times" aria-hidden="true" onClick={this.promptDeclineChanges}></i></div>
+        <div className="Add-Icon"><i class="fa fa-plus" onClick={this.togglePopup}></i></div>
+      </div>
+    </div>);
   }
 
   getCourseMarkup() {
-    console.log(this.state.courses);
-    const markup = Object.keys(this.state.courses).map((key)  => (
+    const markup = Object.keys(this.state.courses).map((key) => (
       (<Course key={key} data={this.state.courses[key]} pathwaysObj={this.props.pathwaysObj}
-        sendEditToParent={this.handleEdit} sendDeleteToParent={this.handleDelete} active={true}/>)
+        sendEditToParent={this.handleEdit} sendDeleteToParent={this.handleDelete} active={true} />)
     ));
     return markup;
   }
@@ -102,19 +100,19 @@ class Catalog extends React.Component {
           <div className="Add-Popup-Header"></div>
           <div className="Entry-Container">
             <div className="Text-Entry-Container">
-              <NewCourseForm sendCourseToParent={this.handleAdd}/>
+              <NewCourseForm sendCourseToParent={this.handleAdd} />
             </div>
-            <div className="Pathway-Selector-Container"  onClick={this.togglePopup}></div>
+            <div className="Pathway-Selector-Container" onClick={this.togglePopup}></div>
           </div>
         </div>
       </div>
     )
   }
 
-  
+
   render() {
     console.log("Render Called");
-    
+
     const courseCatalog = this.getCourseCatalogMarkup();
     const addPopup = this.getPopupMarkup();
 
@@ -124,7 +122,7 @@ class Catalog extends React.Component {
       );
     }
     else {
-      return(
+      return (
         <div>
           {addPopup}
           {courseCatalog}
@@ -141,11 +139,11 @@ class Catalog extends React.Component {
   promptDeclineChanges() {
     console.log("DECLINE");
     console.log(this.state.cachedCourses)
-    this.setState(function(prevState) {
-      return {courses: prevState.cachedCourses}
+    this.setState(function (prevState) {
+      return { courses: prevState.cachedCourses }
     });
   }
 }
 
 
-export default Catalog
+export default CourseCatalog
