@@ -117,7 +117,7 @@
 
 .Editing-text-container {
   height: 100%;
-  width: 70%;
+  width: 80%;
   font-size: 1.2em;
   display: flex;
   flex-direction: column;
@@ -125,9 +125,8 @@
 
 .Editing-pathway-container {
   height: 100%;
-  width: 30%;
+  width: 20%;
 }
-
 
 .Description-Form {
 

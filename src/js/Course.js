@@ -6,8 +6,10 @@ class Course extends React.Component {
   constructor(props) {
     super(props);
    // this.handleEditButton = this.handleEditButton.bind(this);
-     = .bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
     this.toggleEditMode = this.toggleEditMode.bind(this);
+    this.validateInputs = this.validateInputs.bind(this);
     //this.handleNameChange = this.handleNameChange.bind(this);
     console.log(props.data.id);
     //to_do set pathway state
@@ -20,16 +22,26 @@ class Course extends React.Component {
     };
   }
 
-  handleDelete(e) {
-    //this.setState({active: false});
-    //launch ARE YOU SURE? POPUp
-    console.log('del'); 
-    this.props.delete(this.props.data.id);
+  handleDelete() {
+    //this.setState({active: false}); 
+    this.props.sendDeleteToParent(this.props.data.id);
   }
 
-
-
-
+  handleEdit() {
+    const result = validateInputs();
+    if (result === '') {
+      //create a new version of the course to be updated in parent catalog
+      const modifiedCourse = {
+        id: this.state.id,
+        title: this.state.title,
+        description: this.state.description,
+        pathways: this.state.pathways
+      }
+      this.props.sendEditToParent(modifiedCourse);
+    } else {
+      //display message
+    }
+  }
 
   toggleEditMode() {
     this.setState((prevState) => ({
@@ -37,18 +49,21 @@ class Course extends React.Component {
     }));
   }
 
-
+  validateInputs() {
+    let message = '';
+    return message;
+  }
 
   render() {
     //console.log(this.state);
-    let pathways = getPathwayMarkup(this.state.selectedPathways);
+    let pathways = getPathwayMarkup(this.props.data.pathways);
     //console.log(this.state.activeEdit);
       if (this.state.activeEdit) {
         return (
         <div className="Course">
           <div className="Number-title-wrapper">
-            <div className="Course-number">HIST {this.state.id}</div>
-            <div className="Course-title">{this.state.title}</div>
+            <div className="Course-number">HIST {this.props.data.id}</div>
+            <div className="Course-title">{this.props.data.title}</div>
           </div>
           <div className="Pathways-wrapper">
             <div className="Pathways-title">Current Pathways:</div>
@@ -56,7 +71,7 @@ class Course extends React.Component {
           </div>
           <div className="Button-wrapper">
             <div className="Edit-button"  onClick={this.toggleEditMode}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
-            <div className="Delete-button" onClick={}><i class="fa fa-times" aria-hidden="true"></i></div>
+            <div className="Delete-button" onClick={this.handleDelete}><i class="fa fa-times" aria-hidden="true"></i></div>
           </div>
         </div>
         );
@@ -65,7 +80,7 @@ class Course extends React.Component {
         return (
           <div className="Editing-course">
             <div className="Title-And-Buttons-Wrapper">
-              <div className="Edit-number">HIST {this.state.id}</div>
+              <div className="Edit-number">HIST {this.props.data.id}</div>
               <div className="Button-wrapper">
                 <div className="Edit-button"  onClick={this.toggleEditMode}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
                 <div className="Confirm-button"><i class="fa fa-check-circle"></i></div>

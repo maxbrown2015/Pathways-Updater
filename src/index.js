@@ -6,20 +6,20 @@ import Popup from 'react-popup';
 
 
 const data = {
-  1: {
-    id: '001',
+  '101': {
+    id: '101',
     title: "American Hist",
     description: "Lorem Ipsum",
     pathways: ['politics_rev', 'slavery_race', 'border_immigration']
   },
-  2: {
+  '015': {
     id: '015',
     title: "Euro Hist",
     description: "Lorem Ipsum",
     pathways: ['human_rights', 'religious_comm', 'econ_history']
   },
-  3: {
-    id: '019',
+  '012': {
+    id: '012',
     title: "Spanish Hist",
     description: "Lorem Ipsum",
     pathways: ['econ_history', 'slavery_race', 'religous_comm']

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PathwayComponent from './PathwayComponent'
 
 class PathwaysCatalog extends React.Component {
   constructor(props) {

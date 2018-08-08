@@ -45,7 +45,13 @@ class Catalog extends React.Component {
   };
 
   handleEdit(modifiedCourse) {
-
+    this.setState(function(prevState) {
+      let newCourses = prevState.courses;
+      newCourses[modifiedCourse.id] = modifiedCourse;
+      return {
+        newCourses: newCourses
+      }
+    });
   }
 
   handleAdd(newCourse) {
@@ -84,7 +90,7 @@ class Catalog extends React.Component {
     console.log(this.state.courses);
     const markup = Object.keys(this.state.courses).map((key)  => (
       (<Course key={key} data={this.state.courses[key]} pathwaysObj={this.props.pathwaysObj}
-        change={this.registerCourseStateChange} delete={this.handleDelete} active={true}/>)
+        sendEditToParent={this.handleEdit} sendDeleteToParent={this.handleDelete} active={true}/>)
     ));
     return markup;
   }
@@ -141,15 +147,5 @@ class Catalog extends React.Component {
   }
 }
 
-function cloneObject(obj) {
-    var clone = {};
-    for(var i in obj) {
-        if(obj[i] != null &&  typeof(obj[i])=="object")
-            clone[i] = cloneObject(obj[i]);
-        else
-            clone[i] = obj[i];
-    }
-    return clone;
-}
 
 export default Catalog
