@@ -2,13 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/index.css';
 import CourseCatalog from './js/CourseCatalog';
+import ChooseCatalogInterface from './js/ChooseCatalogInterface';
 
-const data = {
+const courses = {
   '101': {
     id: '101',
     title: "American Hist",
     description: "Lorem Ipsum",
-    pathways: ['politics_rev', 'slavery_race', 'borders_immigration']
+    pathways: ['politics_rev', 'borders_immigration']
   },
   '015': {
     id: '015',
@@ -24,7 +25,7 @@ const data = {
   }
 }
 
-const pathwaysObj = {
+const pathways = {
   econ_history: {
     title: "Economic History",
     description: "Lorem Ipsum",
@@ -69,4 +70,4 @@ const pathwaysObj = {
   }
 }
 
-ReactDOM.render(<div><CourseCatalog data={data} pathwaysObj={pathwaysObj}/></div>,document.getElementById('root'));
+ReactDOM.render(<div><ChooseCatalogInterface courses={courses} pathways={pathways}>/div>/></div>,document.getElementById('root'));
