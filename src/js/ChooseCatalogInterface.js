@@ -7,7 +7,7 @@ class ChooseCatalogInterface extends React.Component {
   constructor(props) {
     super(props);
     this.state = {catalogSelected: ''};
-    t
+    this.handleChoice = this.handleChoice.bind(this);
   }
 
   handleChoice(event) {

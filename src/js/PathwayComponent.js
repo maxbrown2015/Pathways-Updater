@@ -18,7 +18,7 @@ class PathwayComponent extends React.Component {
 
   handleEdit() {
     //approve changes ? 
-    const result = validateInputs();
+    const result = this.validateInputs();
     if (true) {
       const modifiedPathway = {
         title: this.state.title,
