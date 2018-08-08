@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
+import PathwaySelector from './PathwaySelector';
 import '../css/NewCourseForm.css';
 
 class NewCourseForm extends React.Component {
   constructor(props) {
     super(props);
+    
 
     this.handleFormChange = this.handleFormChange.bind(this);
-    this.submitCourse = this.submitCourse.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.liftUpNewCourse = this.liftUpNewCourse.bind(this);
+    this.validateInputs = this.validateInputs.bind(this);
+
     this.state = {
       number: '',
       title: '',
@@ -17,7 +21,6 @@ class NewCourseForm extends React.Component {
 
   handleFormChange(event) {
     const name = event.target.name;
-    console.log(name);
     if (name === 'number') {
       this.setState({number: event.target.value})
     }
@@ -29,17 +32,17 @@ class NewCourseForm extends React.Component {
     }
   }
 
-  submitCourse() {
-    let result = validateInputs();
+  handleSubmit(event) {
+    let result = this.validateInputs();
     if (result !== '') {
       //displayErrorMessage(result);
     }
     else {
-      this.liftUpNewCourse();
+      this.liftUpNewCourse(event);
     }
   }
 
-  liftUpNewCourse() {
+  liftUpNewCourse(e) {
     const validatedNumber = this.state.number;
     const validatedTitle = this.state.title;
     const validatedDescription = this.state.description;
@@ -50,7 +53,9 @@ class NewCourseForm extends React.Component {
       description: validatedDescription
     };
 
+    console.log(newCourse);
     this.props.sendCourseToParent(newCourse);
+    e.preventDefault();
   }
 
   validateInputs() {
@@ -69,8 +74,7 @@ class NewCourseForm extends React.Component {
 
   render() {
     return (
-      <div className="Wrapper">
-      <form onSubmit={this.submitCourse}>
+      <form onSubmit={this.handleSubmit}>
         <label className="Number-label">Enter course number in the format XXXX or XXX 
           <input type="text" name="number" value={this.state.number} onChange={this.handleFormChange} className="Number-input"/>
         </label>
@@ -84,9 +88,8 @@ class NewCourseForm extends React.Component {
           className="Description-input" cols="40" rows="5"/>
         </label>
         <br></br>
-        <input type="submit" name="submit" />
+        <input type="submit" value="Submit" />
       </form>
-      </div>
     );
   }
 }

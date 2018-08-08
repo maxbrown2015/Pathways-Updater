@@ -9,31 +9,26 @@ class Course extends React.Component {
     this.handleDeleteButton = this.handleDeleteButton.bind(this);
     this.handleChange = this.handleChange.bind(this);
     //this.handleNameChange = this.handleNameChange.bind(this);
-  
+    console.log(props.data.id);
     //to_do set pathway state
     this.state = {
       id: props.data.id,
       title: props.data.title.toUpperCase(),
       description: props.data.description,
       selectedPathways: props.data.pathways,
-      notifyParentOnChange: props.change,
-      notifyParentOnDelete: props.delete,
-      active: true,
       activeEdit: true,
     };
   }
 
   handleDeleteButton(e) {
-    this.setState({active: false});
+    //this.setState({active: false});
     //launch ARE YOU SURE? POPUp
-    console.log('del');
-    this.props.delete(this.state.id);
-    //this.props.render = false;
-    //this.state.notifyParentOnDelete();
+    console.log('del'); 
+    this.props.delete(this.props.data.id);
   }
 
   componentWillUnmount() {
-    console.log(this.state.id);
+    //console.log(this.props.data.id);
   }
 
   handleChange() {
@@ -48,7 +43,6 @@ class Course extends React.Component {
     //console.log(this.state);
     let pathways = getPathwayMarkup(this.state.selectedPathways);
     //console.log(this.state.activeEdit);
-    if (this.state.active) {
       if (this.state.activeEdit) {
         return (
         <div className="Course">
@@ -82,15 +76,11 @@ class Course extends React.Component {
                 <div className="Edit-title">TITLE:</div>
                 <div className="Edit-descirption">DESCRIPTION:</div>
               </div>
-              <div>< PathwaysSelector allPathways={this.props.pathwaysObj} selectedPathways={this.props.data.pathways}/></div>
+              <div><PathwaysSelector pathways={this.props.pathwaysObj} selectedPathways={this.props.data.pathways}/></div>
             </div>
           </div>
         );
       }
-    }
-    else {
-      return <div></div>
-    }
   };
 }
 
@@ -101,6 +91,8 @@ function getPathwayMarkup(selectedPathways) {
   });
   return pathways;
 }
+
+  //
 
 export default Course;
 

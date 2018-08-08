@@ -6,27 +6,36 @@ class PathwaySelector extends React.Component {
   constructor(props) {
     super(props);
     //this.state.pathwaysprops.pathways
-    this.state = {pathways: []}
-
-    Object.keys(props.allPathways).forEach((index) => {
-      const selected = props.selectedPathways.includes(props.allPathways[index].key);
-      this.state.pathways.push({
-        selected: {selected},
-        pathway: props.allPathways[index]
-      });
-    });
-
-    console.log(this.state);
+    this.state = {pathways: {}, selectedPathways: {}}
+    this.state.pathways = props.pathways;
+    this.state.selectedPathways = props.selectedPathways
+    console.log(props.pathways);
+    console.log(props.selectedPathways);
+    
     
     //iterate through state and add active pathways 
   }
 
+  renderCheckBoxes() {
+    let IDs = Object.keys(this.state.pathways)
+    console.log(IDs)
+    const markup = IDs.map((id) => {
+      return (
+      <div key={id}>
+      <label>{this.state.pathways[id].title}
+      <input  type="checkbox" checked={true}/>
+      </label>
+      </div>
+      );
+    });
+    console.log(markup)
+    return markup;
+
+  }
+
   render() {
-    let pathwayCheckboxs = [];
-    this.state.allPathways.forEach((item) => {
-      //
-    })
-    return (<div>hi</div>);
+    return (
+    <div><form>{this.renderCheckBoxes()}</form></div>);
   }
 }
 
