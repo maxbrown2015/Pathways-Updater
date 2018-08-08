@@ -1,0 +1,42 @@
+.Wrapper {
+  height: 100%;
+  width: 100%;
+  font-family: sans-serif;
+  font-size: 1em;
+  margin: .1em;
+}
+
+input[type=text] {
+  border: 2px solid red;
+  border-radius: 4px;
+  font-size: 15px;
+}
+
+.Number-label {
+  font-size: 2em;
+}
+
+.Number-input {
+  width: 30%;
+  height: 10%;
+}
+
+
+.Title-label {
+  font-size: 2em;
+}
+
+
+.Title-input {
+  width: 90%;
+  height: 30%;
+}
+
+.Description-label {
+  font-size: 2em;
+}
+
+.Description-input {
+  width: 90%;
+}
+

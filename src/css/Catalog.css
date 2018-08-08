@@ -40,3 +40,68 @@
 .Revert-Icon:hover {
   color: white
 }
+
+.Add-Icon {
+  cursor: pointer;
+  font-size: 5em;
+  color: rgb(31, 141, 214);
+  margin: .25em;
+}
+
+.Add-Icon:hover {
+  color: white
+}
+
+/**************/
+
+.Popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgba(0,0,0, 0.5);
+}
+
+.Add-Popup {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 10%;
+  bottom: 10%;
+  margin: auto;
+  background: white;
+  display: flex;
+  flex-direction: column
+}
+
+.Add-Popup-Header {
+  height: 10%;
+  width: 100%;
+  background-color: '#01256E'
+}
+
+.Entry-Container {
+  height: 90%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.Text-Entry-Container {
+  height: 100%;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.Pathway-Selector-Container {
+  height: 100%;
+  width: 40%;
+  display: flex;
+  background-color: red;
+}
+
