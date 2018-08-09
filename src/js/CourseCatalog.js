@@ -21,7 +21,6 @@ class CourseCatalog extends React.Component {
     console.log("Constructor Called");
     this.state.courses = props.data;
     this.state.cachedCourses = JSON.parse(JSON.stringify(props.data));
-    console.log(this.state.courses === this.state.cachedCourses);
   };
 
   togglePopup() {

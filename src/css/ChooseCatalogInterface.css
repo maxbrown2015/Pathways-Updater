@@ -1,0 +1,66 @@
+.Overlay {
+  width: 100%;
+  height: 100%;
+}
+
+.Prompt-Container {
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  margin: auto;
+  margin-top: 5%;
+  width: 50vw;
+  height: 20vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Prompt {
+  font-size: 2vw;
+  color: white;
+}
+
+.Choose-Pathways-Container {
+  position: absolute;
+  left: 20%;
+  top: 40%;
+  font-size: 1vw;
+  margin: 0;
+  width: 20vw;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #01256e;
+  cursor: pointer;
+}
+
+.Choose-Pathways {
+  font-size: 2vw;
+  color: white;
+}
+
+.Choose-Courses-Container {
+  position: absolute;
+  right: 20%;
+  top: 40%;
+  margin: 0;
+  font-size: 1vw;
+  width: 20vw;
+  height: 40vh;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #95001a;
+  cursor: pointer;
+}
+
+.Choose-Courses {
+  font-size: 2vw;
+  color: white;
+}
+

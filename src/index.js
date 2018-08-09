@@ -70,6 +70,6 @@ const pathways = {
   }
 }
 
-ReactDOM.render(<div><CourseCatalog data={courses} pathwaysObj={pathways}/></div>,document.getElementById('root'));
+ReactDOM.render(<div><ChooseCatalogInterface courses={courses} pathways={pathways}/></div>,document.getElementById('root'));
 
-//<div><ChooseCatalogInterface courses={courses} pathways={pathways}/></div>
+//

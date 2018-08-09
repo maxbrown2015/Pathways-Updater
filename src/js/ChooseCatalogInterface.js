@@ -7,25 +7,35 @@ class ChooseCatalogInterface extends React.Component {
   constructor(props) {
     super(props);
     this.state = {catalogSelected: ''};
-    this.handleChoice = this.handleChoice.bind(this);
+    this.selectCourses = this.selectCourses.bind(this);
+    this.selectPathways = this.selectPathways.bind(this);
   }
 
-  handleChoice(event) {
-    let choice = '';
-    if (choice === 'course') {
-      this.setState({catalogSelected: 'course'})
-    }
-    if (choice === 'pathway') {
-      this.setState({catalogSelected: 'pathway'})
-    }
+  selectCourses() {
+    this.setState({catalogSelected: 'course'})
+  }
+
+  selectPathways() {
+    this.setState({catalogSelected: 'pathway'})
+  }
+
+
+  renderMakeDecisionMarkup() {
+    const markup = 
+    (<div className="Overlay">
+      <div className="Prompt-Container"><div className="Prompt">Would You Like To Edit Pathways or Courses?</div></div>
+       <div className="Choose-Pathways-Container" name="pathways" onClick={this.selectPathways}><div className="Choose-Pathways">Pathways</div></div>
+       <div className="Choose-Courses-Container" onClick={this.selectCourses} ><div className="Choose-Courses">Courses</div></div>
+    </div>)
+    return markup;
   }
 
   render() {
     if (this.state.catalogSelected === '') {
-      return <div>PICK A CATALOGUE</div>
+      return this.renderMakeDecisionMarkup()
     }
     if (this.state.catalogSelected === 'course') {
-      return <CourseCatalog data={this.props.courses} pathwayObj={this.props.pathways}/>
+      return <CourseCatalog data={this.props.courses} pathwaysObj={this.props.pathways}/>
     }
     if (this.state.catalogSelected === 'pathway') {
       return <PathwaysCatalog pathwayObj={this.props.pathways}/>
