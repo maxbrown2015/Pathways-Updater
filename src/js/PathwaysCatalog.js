@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../css/PathwaysCatalog.css'
 import PathwayComponent from './PathwayComponent'
 
 class PathwaysCatalog extends React.Component {
@@ -8,6 +9,9 @@ class PathwaysCatalog extends React.Component {
     this.handleDelete = this.handleDelete.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
+    this.promptExportPathways = this.promptExportPathways.bind(this);
+    this.promptDeclineChanges = this.promptDeclineChanges.bind(this);
+    this.togglePopup = this.togglePopup.bind(this);
   }
 
   handleDelete(key) {
@@ -47,6 +51,24 @@ class PathwaysCatalog extends React.Component {
     })
     return pathwayComponents;
   }
+
+  promptExportPathways() {return}
+  promptDeclineChanges() {return}
+  togglePopup() {return}
+
+  renderPathwayCatalogMarkup() {
+    const pathwayComponents = this.renderPathwayComponents()
+    return (<div className="Catalog">
+      <div className="Title">Course Catalog</div>
+      <div className="CourseList">{pathwayComponents}</div>
+      <div className="Button-Wrapper">
+        <div className="Submit-Icon"><i class="fa fa-check-circle" onClick={this.promptExportCourses}></i></div>
+        <div className="Revert-Icon"><i class="fa fa-times" aria-hidden="true" onClick={this.promptDeclineChanges}></i></div>
+        <div className="Add-Icon"><i class="fa fa-plus" onClick={this.togglePopup}></i></div>
+      </div>
+    </div>);
+  }
+
   
   render() {
     return (<div>{this.renderPathwayComponents}</div>);
