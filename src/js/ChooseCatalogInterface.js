@@ -38,7 +38,7 @@ class ChooseCatalogInterface extends React.Component {
       return <CourseCatalog data={this.props.courses} pathwaysObj={this.props.pathways}/>
     }
     if (this.state.catalogSelected === 'pathway') {
-      return <PathwaysCatalog pathwayObj={this.props.pathways}/>
+      return <PathwaysCatalog pathwaysObj={this.props.pathways}/>
     }
   }
   

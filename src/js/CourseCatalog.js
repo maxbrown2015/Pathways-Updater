@@ -58,7 +58,7 @@ class CourseCatalog extends React.Component {
       id: newCourse.id,
       title: newCourse.title,
       description: newCourse.description,
-      pathways: ['human_rights', 'religious_comm', 'econ_history']
+      pathways: newCourse.pathways
     }
     this.setState(function (prevState) {
       let newCourseList = prevState.courses;
@@ -99,7 +99,7 @@ class CourseCatalog extends React.Component {
           <div className="Add-Popup-Header"></div>
           <div className="Entry-Container">
             <div className="Text-Entry-Container">
-              <NewCourseForm sendCourseToParent={this.handleAdd} />
+              <NewCourseForm pathwaysObj={this.props.pathwaysObj} sendCourseToParent={this.handleAdd} />
             </div>
             <div className="Pathway-Selector-Container" onClick={this.togglePopup}></div>
           </div>
