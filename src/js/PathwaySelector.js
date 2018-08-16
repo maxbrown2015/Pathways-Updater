@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //import PathwaySelectorItem from './PathwaySelectorItem'
-import '../css/Course.css';
+import '../css/PathwaySelector.css';
 
 class PathwaySelector extends React.Component {
   constructor(props) {
@@ -40,12 +40,12 @@ class PathwaySelector extends React.Component {
 
     let IDs = Object.keys(this.state.pathwaysActiveOrNot)
     const markup = IDs.map((id) => {
-      const title = this.state.pathwaysActiveOrNot[id]['pathway'].title;
+      const title = this.state.pathwaysActiveOrNot[id]['pathway'].name;
       const checked = this.state.pathwaysActiveOrNot[id]['active'];
       return (
-      <div key={id}>
+      <div key={id} className="Checkbox-wrapper" style={{color: this.props.pathways[id].color}}>
       <label>{title}
-      <input name={id} type="checkbox" checked={checked} onChange={this.handleSelect}/>
+      <input name={id} className="Checkbox" type="checkbox" checked={checked} onChange={this.handleSelect}/>
       </label>
       </div>
       );
@@ -70,7 +70,7 @@ class PathwaySelector extends React.Component {
       if (active) number = number + 1
       else number = number - 1
       return { pathwaysActiveOrNot: newPathwayState, numberOfChecked: number};
-    }, () => {
+      }, () => {
       //send updated state to parent 
       this.updateParent();
     });
@@ -78,7 +78,7 @@ class PathwaySelector extends React.Component {
 
   render() {
     return (
-    <div>{this.renderCheckBoxes()}</div>);
+    <div className="Checkbox-container">{this.renderCheckBoxes()}</div>);
   }
 }
 

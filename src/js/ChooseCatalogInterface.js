@@ -3,6 +3,13 @@ import '../css/ChooseCatalogInterface.css'
 import CourseCatalog from './CourseCatalog'
 import PathwaysCatalog from './PathwaysCatalog'
 
+/*
+Component allows the user to pick whether to modify Pathways or Courses. 
+Because both are interdependent, it is only
+possibly to modfiy one or the other per session. Which catalog is rendered is dependent on the
+user's selection
+*/
+
 class ChooseCatalogInterface extends React.Component {
   constructor(props) {
     super(props);
@@ -11,10 +18,17 @@ class ChooseCatalogInterface extends React.Component {
     this.selectPathways = this.selectPathways.bind(this);
   }
 
+  /**
+   * @description: sets an identifying string to 'course', which tells this component to render Course catalog
+   */
   selectCourses() {
     this.setState({catalogSelected: 'course'})
   }
 
+
+  /**
+   * @description: sets an identifying string to 'pathway', which tells this component to render Pathways catalog
+   */
   selectPathways() {
     this.setState({catalogSelected: 'pathway'})
   }
@@ -38,7 +52,7 @@ class ChooseCatalogInterface extends React.Component {
       return <CourseCatalog data={this.props.courses} pathwaysObj={this.props.pathways}/>
     }
     if (this.state.catalogSelected === 'pathway') {
-      return <PathwaysCatalog pathwaysObj={this.props.pathways}/>
+      return <PathwaysCatalog pathways={this.props.pathways}/>
     }
   }
   

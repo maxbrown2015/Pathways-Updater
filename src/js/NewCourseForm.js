@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PathwaySelector from './PathwaySelector';
-import '../css/NewCourseForm.css';
+import '../css/Course.css';
 
 
 class NewCourseForm extends React.Component {
@@ -9,7 +9,7 @@ class NewCourseForm extends React.Component {
     
     this.handleFormChange = this.handleFormChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.liftUpNewCourse = this.liftUpNewCourse.bind(this);
+    this.addNewCourse = this.addNewCourse.bind(this);
     this.validateInputs = this.validateInputs.bind(this);
 
     this.handlePathwayUpdateFromChild = this.handlePathwayUpdateFromChild.bind(this);
@@ -49,7 +49,7 @@ class NewCourseForm extends React.Component {
     }
   }
 
-  liftUpNewCourse(e) {
+  addNewCourse(e) {
     const validatedNumber = this.state.number;
     const validatedTitle = this.state.title;
     const validatedDescription = this.state.description;
@@ -67,6 +67,14 @@ class NewCourseForm extends React.Component {
     e.preventDefault();
   }
 
+
+
+  render() {
+    return (
+      <div></div>
+    );
+  }
+
   validateInputs() {
     let message = '';
     if (!isValidNumber(this.state.number)) {
@@ -82,29 +90,6 @@ class NewCourseForm extends React.Component {
       message.concat("There Was An Error Selecting Pathways. Be Sure To Select 1 - 3 pathways")
     }
     return message;
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label className="Number-label">Enter course number in the format XXXX or XXX 
-          <input type="text" name="number" value={this.state.number} onChange={this.handleFormChange} className="Number-input"/>
-        </label>
-        <br></br>
-        <label className="Title-label">Enter the title of the course 
-          <input type="text" name="title" value={this.state.title} onChange={this.handleFormChange} className="Title-input"/>
-        </label>
-        <br></br>
-        <label className="Description-label">Enter the course description
-          <textarea value={this.state.description} name="description" onChange={this.handleFormChange} 
-          className="Description-input" cols="40" rows="5"/>
-        </label>
-        <br></br>
-        <input type="submit" value="Submit" />
-        <PathwaySelector pathways={this.props.pathwaysObj} selectedPathways={[]}
-        sendSelectedPathwaysToParent={this.handlePathwayUpdateFromChild} />
-      </form>
-    );
   }
 }
 

@@ -32,8 +32,6 @@ class CourseCatalog extends React.Component {
   }
 
   handleDelete(id) {
-    //console.log(newCourseList)
-    console.log(id)
     this.setState(function (prevState) {
       let newCourses = prevState.courses;
       delete newCourses[id];
@@ -110,8 +108,6 @@ class CourseCatalog extends React.Component {
 
 
   render() {
-    console.log("Render Called");
-
     const courseCatalog = this.getCourseCatalogMarkup();
     const addPopup = this.getPopupMarkup();
 
