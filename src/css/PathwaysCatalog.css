@@ -1,0 +1,13 @@
+.Pathways-Catalog {
+  margin-top: 5vh;
+  width: 100vw;
+}
+
+.Title {
+  font-size: 4em;
+  font-family: sans-serif;
+  color:rgb(56, 54, 54);
+  display: flex;
+  justify-content: left;
+  margin: .25em;
+}
