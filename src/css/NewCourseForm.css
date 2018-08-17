@@ -1,42 +1,115 @@
-.Wrapper {
-  height: 100%;
-  width: 100%;
-  font-family: sans-serif;
+.Editing-course {
+  display: flex;
+  width: 95vw;
+  height: 25em;
+  margin: 0 auto;
+  margin-left: 3vw;
+  border: black solid 3px;
   font-size: 1em;
-  margin: .1em;
+  background-color: rgba(0, 0, 0, .3);
 }
 
-input[type=text] {
-  border: 2px solid red;
-  border-radius: 4px;
-  font-size: 15px;
+.Text-container {
+  height: 100%;
+  width: 40%; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: left;
+  margin: 0 auto;
+}
+
+.Buttons-wrapper {
+  width: 10%;
+  height: 100%;
+  margin-left: 60%;
+}
+
+.Number {
+  height: 20%;
+  width: 100% ;
+  margin: 0 auto;
+  margin-top: 7%;
+  display: flex;
+  align-items: center;
 }
 
 .Number-label {
-  font-size: 2em;
+  font-size: 16px;
 }
 
-.Number-input {
-  width: 30%;
-  height: 10%;
+.Number-area {
+  height: 100%;
+  width: 100%;
+  font-family: sans-serif;
+  min-width: 100%;
+  margin: 0 auto;
 }
 
+.Title {
+  height: 20%;
+  width: 100% ;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+
+}
 
 .Title-label {
-  font-size: 2em;
+  font-size: 16px;
 }
 
+.Title-area {
+  height: 100%;
+  width: 100%;
+  font-family: sans-serif;
+  min-width: 100%;
+  margin: 0 auto;
+}
 
-.Title-input {
-  width: 90%;
-  height: 30%;
+.Description {
+  height: 80%;
+  width: 100% ;
+  margin: 0 auto;
+  margin-top: 10%;
+  display: flex;
+  align-items: center;
 }
 
 .Description-label {
+  font-size: 16px;
+}
+
+.Description-area {
+  height: 100%;
+  width: 100%;
+  font-family: sans-serif;
+  min-width: 100%;
+  margin: 0 auto;
+}
+
+.Selector-container {
+  height: 100%;
+  width: 30%;
+  margin: 0 auto;
+  margin-left: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Selector-header {
+  height: 20%;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 5%;
   font-size: 2em;
 }
 
-.Description-input {
-  width: 90%;
+.Selector-wrapper {
+  height: 70%;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 5%;
 }
-

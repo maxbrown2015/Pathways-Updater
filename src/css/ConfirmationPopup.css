@@ -17,14 +17,16 @@
   top: 25%;
   bottom: 25%;
   margin: auto;
-  background: white;
+  background: rgba(255, 255, 255, .95);
   display: flex;
+  flex-direction: column;
   font-size: 1em;
 }
 
 .Message-container {
   width: 100%;
   height: 60%;
+  margin-top: 5%;
   text-align: center;
 }
 
@@ -34,19 +36,29 @@
 
 .Buttons-container {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .Accept {
   font-size: 5em;
-  color: rgb(247, 17, 17);
+  color: green;
   margin: .25em;
   cursor: pointer;
 } 
 
+.Accept:hover {
+  color: white;
+}
+
 .Decline {
   cursor: pointer;
   font-size: 5em;
-  color: green;
+  color: rgb(247, 17, 17);;
   margin: .25em;
+}
+
+.Decline:hover {
+  color: white;
 }
 
