@@ -1,6 +1,7 @@
 .Catalog {
   margin-top: 5vh;
   width: 100vw;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .Title {
@@ -64,6 +65,7 @@
   bottom: 0;
   margin: auto;
   background-color: rgba(0,0,0, 0.5);
+    font-family: 'Open Sans', sans-serif;
 }
 
 .Add-Popup {
