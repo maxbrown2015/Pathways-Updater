@@ -1,20 +1,25 @@
 import React, { Component } from 'react';
 import '../css/Course.css';
 import PathwaysSelector from './PathwaySelector'
+import ConfirmationPopup from './ConfirmationPopup';
 
 
 class Course extends React.Component {
   constructor(props) {
     super(props);
-   // this.handleEditButton = this.handleEditButton.bind(this);
+   // this.editCourseButton = this.editCourseButton.bind(this);
+    this.editCourse = this.editCourse.bind(this);
+    this.deleteCourse = this.deleteCourse.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
-    this.handelCancelEdits = this.handelCancelEdits.bind(this);
+    this.cancelEdits = this.cancelEdits.bind(this);
     this.toggleEditMode = this.toggleEditMode.bind(this);
     this.validateInputs = this.validateInputs.bind(this);
     this.renderPathwayNameMarkup = this.renderPathwayNameMarkup.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
     this.updateSelectedPathways = this.updateSelectedPathways.bind(this);
+    this.removePopup = this.removePopup.bind(this);
+
     //this.handleNameChange = this.handleNameChange.bind(this);
     
     //to_do set pathway state
@@ -24,6 +29,9 @@ class Course extends React.Component {
       description: props.data.description,
       selectedPathways: props.data.pathways,
       activeEdit: false,
+      isDeletePopupActive: false,
+      isEditPopupActive: false,
+      popupMessage: ''
     };
 
     this.renderNonEditMarkup = this.renderNonEditMarkup.bind(this);
@@ -35,7 +43,7 @@ class Course extends React.Component {
   /**
    * @description: Sends the component's corresponding id to the parent for deletion
    */
-  handleDelete() {
+  deleteCourse() {
     this.props.sendDeleteToParent(this.props.data.id);
   }
 
@@ -43,7 +51,7 @@ class Course extends React.Component {
    * @param {} event 
    * @description: Sends the current state to the parent as a new course to update the source of truth 
    */
-  handleEdit(event) {
+  editCourse(event) {
     const result = this.validateInputs();
     if (result === '') {
       //create a new version of the course to be updated in parent catalog
@@ -57,12 +65,12 @@ class Course extends React.Component {
     } else {
       //display message
     }
-    this.setState({activeEdit: false});
-    event.preventDefault();
+    this.setState({activeEdit: false}); 
   }
-
-  handelCancelEdits() {
+  
+  cancelEdits() {
     //prompt
+
     this.setState(() => {
       return {
         title: this.props.data.title.toUpperCase(),
@@ -70,8 +78,7 @@ class Course extends React.Component {
         selectedPathways: this.props.data.pathways,
         activeEdit: false
       }
-    })
-
+    })  
   }
   /**
   * @description: Switches markup between editing area and default display
@@ -112,6 +119,34 @@ class Course extends React.Component {
     }));
   }
 
+  handleDelete() {
+    this.setState(() => {
+      return {
+        isDeletePopupActive: true,
+        popupMessage: `Are you sure you would like to delete HIST-${this.props.data.id}?`
+      }
+    });
+  }
+
+  handleEdit() {
+    this.setState(() => {
+      return {
+        isEditPopupActive: true,
+        popupMessage: `Are you sure you would like to edit HIST-${this.props.data.id}?`
+      }
+    });
+  }
+
+  removePopup() {
+    this.setState(() => {
+      return {
+        isDeletePopupActive: false,
+        isEditPopupActive: false,
+        popupMessage: ''
+      }
+    })
+  }
+
   renderPathwayNameMarkup() { 
     const markup = Object.keys(this.props.data.pathways).map((index) => {
       const key = this.props.data.pathways[index];
@@ -148,7 +183,7 @@ class Course extends React.Component {
         </div>
         <div className="Button-wrapper">
           {editButton}
-          <div className="Cancel-button" onClick={this.handelCancelEdits}><i class="fa fa-times" aria-hidden="true"></i></div>
+          <div className="Cancel-button" onClick={this.cancelEdits}><i class="fa fa-times" aria-hidden="true"></i></div>
           <div className="Delete-button"><i class="fa fa-trash" aria-hidden="true" onClick={this.handleDelete}></i></div>
         </div>
       </div>
@@ -177,12 +212,36 @@ class Course extends React.Component {
       )
   }
 
+  renderConfirmDeletePopup() {
+    return (
+      <ConfirmationPopup message={this.state.popupMessage} handleAccept={this.deleteCourse} 
+      handleDecline={this.removePopup}/>
+    );
+  }
+
+  renderConfirmEditPopup() {
+    return (<ConfirmationPopup message={this.state.popupMessage} handleAccept={this.editCourse} 
+    handleDecline={this.removePopup}/>);
+  }
+
   render() {
       if (!this.state.activeEdit) {
+        if (this.state.isDeletePopupActive) {
+          return <div>{this.renderConfirmDeletePopup()}{this.renderNonEditMarkup()}</div>
+        } else {
         return (this.renderNonEditMarkup())
+        }
       }
       else {
-        return <div>{this.renderNonEditMarkup()}{this.renderEditingMarkup()}</div>
+        if (this.state.isDeletePopupActive) {
+          return <div>{this.renderConfirmDeletePopup()}{this.renderEditingMarkup()}</div>
+        }
+        else if (this.state.isEditPopupActive) {
+          return this.renderConfirmEditPopup();
+        }
+        else {
+          return <div>{this.renderNonEditMarkup()}{this.renderEditingMarkup()}</div>
+        }
       }
     };
 }

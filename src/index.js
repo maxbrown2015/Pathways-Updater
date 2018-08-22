@@ -27,45 +27,45 @@ const courses = {
 
 const pathways = {
   econ_history: {
-    title: "Economic History",
+    name: "Economic History",
     description: "Lorem Ipsum",
     color: "#434343",
     highlight: "#Fdfdfd",
     key: 'econ_history'
   },
   human_rights: {
-    title: "Human Rights",
+    name: "Human Rights",
     description: "Lorem Ipsum",
-    color: "#dsddss",
-    highlight: '#rerfdf',
+    color: "#dddfdd",
+    highlight: '#dfdfdd',
     key: 'human_rights'
   },
   religious_comm: {
-    title: "Religious Community",
+    name: "Religious Community",
     description: 'Lorem Ipsum',
-    color: "#555545",
-    highlight: '#rerfdf',
+    color: "#123213",
+    highlight: '#453433',
     key: 'religious_comm'
   },
   borders_immigration: {
-    title: "Borders And Immigration",
+    name: "Borders And Immigration",
     description: 'Lorem Ipsum',
-    color: "#555545",
-    highlight: '#rerfdf',
+    color: "#143423",
+    highlight: '#123214',
     key: 'borders_immigration'
   },
   slavery_race: {
-    title: 'Slavery and Race',
+    name: 'Slavery and Race',
     description: 'Lorem Ipsum',
-    color: "#555545",
-    highlight: '#rerfdf',
+    color: "#434343",
+    highlight: '#FFFFFF',
     key: 'slavery_race'
   },
   politics_rev: {
-    title: "Politics And Revolution",
+    name: "Politics And Revolution",
     description: 'Lorem Ipsum',
-    color: "#555545",
-    highlight: '#rerfdf',
+    color: "#eeeeee",
+    highlight: '#F1132F',
     key: 'politics_rev'
   }
 }

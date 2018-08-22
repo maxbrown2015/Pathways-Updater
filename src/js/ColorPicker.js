@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { SketchPicker } from 'react-color';
+import '../css/ColorPicker.css'
 
 class ColorPicker extends React.Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class ColorPicker extends React.Component {
 
   render() {
     return (
-      <SketchPicker color={this.state.color} onChangeComplete={this.handleColorChange} />
+      <SketchPicker className="ColorPicker" color={this.state.color} onChangeComplete={this.handleColorChange} />
     );
   }
 }

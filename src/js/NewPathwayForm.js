@@ -64,9 +64,9 @@ class NewPathwayForm extends React.Component {
     <div className="Text-container">
     <div className="Name"><textarea className="Name-area" name="name" value={this.state.title} hint={'Enter Title'}
      onChange={this.handleTextChange}/></div>
-     <div className="Description"><textarea className="Description-area" 
+     <div className="Description"><label><textarea className="Description-area" 
      name="description" value={this.state.description} hint={'Enter Description'}
-      onChange={this.handleTextChange}/></div>
+      onChange={this.handleTextChange}/></label></div>
     </div>
     <div className="Color-container"><div className="Color-title">Color: {this.state.color}</div> 
       <div className="Picker-wrapper">
