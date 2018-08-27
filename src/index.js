@@ -7,7 +7,7 @@ import ChooseCatalogInterface from './js/ChooseCatalogInterface';
 const courses = {
   '101': {
     id: '101',
-    title: "American Hist",
+    title: "American Hist and the other wordws that am am writing right now to make it really long. LETS JUST KEEP ADDING WORDS I AM GOING TO KEEP ADDING WORDS TILL THIS OVERLFOWS",
     description: "Lorem Ipsum",
     pathways: ['politics_rev', 'borders_immigration']
   },

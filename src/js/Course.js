@@ -44,6 +44,7 @@ class Course extends React.Component {
    * @description: Sends the component's corresponding id to the parent for deletion
    */
   deleteCourse() {
+
     this.props.sendDeleteToParent(this.props.data.id);
   }
 
@@ -51,7 +52,8 @@ class Course extends React.Component {
    * @param {} event 
    * @description: Sends the current state to the parent as a new course to update the source of truth 
    */
-  editCourse(event) {
+  editCourse() {
+    console.log("edit sent");
     const result = this.validateInputs();
     if (result === '') {
       //create a new version of the course to be updated in parent catalog
@@ -61,16 +63,17 @@ class Course extends React.Component {
         description: this.state.description,
         pathways: this.state.selectedPathways
       }
+      this.removePopup();
+      this.toggleEditMode();
       this.props.sendEditToParent(modifiedCourse);
     } else {
       //display message
     }
-    this.setState({activeEdit: false}); 
   }
   
   cancelEdits() {
     //prompt
-
+    console.log("Edits canceled");
     this.setState(() => {
       return {
         title: this.props.data.title.toUpperCase(),
@@ -78,12 +81,14 @@ class Course extends React.Component {
         selectedPathways: this.props.data.pathways,
         activeEdit: false
       }
-    })  
+    })
+
   }
   /**
   * @description: Switches markup between editing area and default display
   */
   toggleEditMode() {
+    console.log("Edit mode toggled");
     this.setState((prevState) => ({
       activeEdit: !prevState.activeEdit
     }));
@@ -120,6 +125,7 @@ class Course extends React.Component {
   }
 
   handleDelete() {
+    console.log("delete popup active");
     this.setState(() => {
       return {
         isDeletePopupActive: true,
@@ -129,6 +135,7 @@ class Course extends React.Component {
   }
 
   handleEdit() {
+    console.log("edit popup active");
     this.setState(() => {
       return {
         isEditPopupActive: true,
@@ -138,6 +145,7 @@ class Course extends React.Component {
   }
 
   removePopup() {
+    console.log("popup removed");
     this.setState(() => {
       return {
         isDeletePopupActive: false,
@@ -158,7 +166,7 @@ class Course extends React.Component {
 
   renderEditButton() {
     if (!this.state.activeEdit) {
-      return (<div className="Edit-button"  onClick={this.toggleEditMode}><i class="fa fa-pencil-square-o" 
+      return (<div className="Edit-button" ><i class="fa fa-pencil-square-o"  onClick={this.toggleEditMode}
       aria-hidden="true"></i></div>)
     }
     else {
@@ -194,11 +202,13 @@ class Course extends React.Component {
     return (
     <div className="Editing-course">
       <div className="Text-container">
-        <div className="Title"><textarea className="Title-area" 
-        name="title" value={this.state.title} onChange={this.handleTextChange}/>
+        <div className="Title">
+        <label><textarea className="Title-area" 
+        name="title" value={this.state.title} onChange={this.handleTextChange} rows={2} cols={50}/></label>
         </div>
-        <div className="Description"><textarea className="Description-area" 
-        name="description" value={this.state.description} onChange={this.handleTextChange}/>
+        <div className="Description">
+        <label><textarea className="Description-area" 
+        name="description" value={this.state.description} onChange={this.handleTextChange} rows={8} cols={50}/></label>
         </div>
       </div>
       <div className="Selector-container">
@@ -237,7 +247,7 @@ class Course extends React.Component {
           return <div>{this.renderConfirmDeletePopup()}{this.renderEditingMarkup()}</div>
         }
         else if (this.state.isEditPopupActive) {
-          return this.renderConfirmEditPopup();
+          return <div>{this.renderConfirmEditPopup()}{this.renderEditingMarkup()}</div>
         }
         else {
           return <div>{this.renderNonEditMarkup()}{this.renderEditingMarkup()}</div>

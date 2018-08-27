@@ -53,6 +53,7 @@ class Pathway extends React.Component {
         key: this.props.pathway.key
       }
       this.props.sendEditToParent(modifiedPathway);
+      this.removePopup();
     }
   }
 
@@ -87,6 +88,7 @@ class Pathway extends React.Component {
       }
     });
   }
+
 
   removePopup() {
     this.setState(() => {
@@ -156,11 +158,12 @@ class Pathway extends React.Component {
 
   renderTextAreas() {
     return( <div className="Text-container">
-    <div className="Name"><textarea className="Name-area" name="name" value={this.state.name} readOnly={!this.state.activeEdit} 
-     onChange={this.handleTextChange}/></div>
+    <div className="Name">
+    <label><textarea className="Name-area" name="name" value={this.state.name} readOnly={!this.state.activeEdit} 
+     onChange={this.handleTextChange} cols={40} rows={1}/></label></div>
      <div className="Description"><label><textarea className="Description-area" 
      name="description" value={this.state.description} readOnly={!this.state.activeEdit}
-      onChange={this.handleTextChange} cols={60} rows={10}/></label></div></div>)
+      onChange={this.handleTextChange} cols={40} rows={10}/></label></div></div>)
    }
  
    renderNoEditText() {

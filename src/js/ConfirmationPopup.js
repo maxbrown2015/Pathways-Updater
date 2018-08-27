@@ -4,11 +4,8 @@ import '../css/ConfirmationPopup.css';
 class ConfirmationPopup extends React.Component {
   constructor(props) {
     super(props);
-
     this.handleAccept = this.handleAccept.bind(this);
     this.handleDecline = this.handleDecline.bind(this);
-
-      
   }
 
   handleAccept() {

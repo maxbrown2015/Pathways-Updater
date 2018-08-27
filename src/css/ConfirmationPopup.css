@@ -27,11 +27,21 @@
   width: 100%;
   height: 60%;
   margin-top: 5%;
-  text-align: justify;
 }
 
 .Message {
   font-size: 1.5em;
+  text-align: center;
+  width: 100%;
+  height: 70%;
+  margin: 0 auto;
+}
+
+.Message-header {
+  width: 100%;
+  height: 30%;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .Buttons-container {

@@ -45,6 +45,7 @@ class PathwaysCatalog extends React.Component {
       };
     });
   }
+  
 
   handleEdit(modifiedPathway) {
     console.log(modifiedPathway);
